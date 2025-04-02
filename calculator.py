@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
-import os
-import sys
+import os, sys
 
 def onKeyF1Click(event):
     def onCloseFormRef(): formRef.destroy()
