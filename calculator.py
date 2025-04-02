@@ -1,14 +1,16 @@
 from tkinter import *
 from tkinter.ttk import *
+import os
+import sys
 
 def onKeyF1Click(event):
     def onCloseFormRef(): formRef.destroy()
     formRef = Toplevel()
-    formRef.geometry("{}x{}+{}+{}".format(500, 215, (formRef.winfo_screenwidth() - 500) // 2, (formRef.winfo_screenheight() - 285) // 2))
+    formRef.geometry("{}x{}+{}+{}".format(425, 115, (formRef.winfo_screenwidth() - 425) // 2, (formRef.winfo_screenheight() - 115) // 2))
     formRef.resizable(False, False)
     formRef.title('О программе')
-    formRef.iconbitmap("icon.ico")
-    Label(formRef, text="Калькулятор - версия 1.0.\n© KitsuruDev, 2024. Все права защищены", font=('Segoe UI', 16)).place(x=8, y=8, width=483, height=200)
+    formRef.iconbitmap(default=os.path.join(application_path, 'icon.ico'))
+    Label(formRef, text="Калькулятор - версия 1.0.\n© KitsuruDev, 2024. Все права защищены", font=('Segoe UI', 16)).place(x=8, y=8, width=400, height=92)
     formRef.protocol("WM_DELETE_WINDOW", onCloseFormRef)
     formRef.grab_set()
     formRef.mainloop()
@@ -55,11 +57,12 @@ def onClickClear(key):
     label2['text'] = ''
 
 calculation, operation, one = False, '', 0
+application_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
 
 formMain = Tk()
 formMain.geometry("{}x{}+{}+{}".format(425, 597, (formMain.winfo_screenwidth() - 425) // 2, (formMain.winfo_screenheight() - 597) // 2))
 formMain.resizable(False, False)
-formMain.iconbitmap("icon.ico")
+formMain.iconbitmap(default=os.path.join(application_path, 'icon.ico'))
 formMain.title('Калькулятор')
 formMain.bind("<F1>", onKeyF1Click)
 
